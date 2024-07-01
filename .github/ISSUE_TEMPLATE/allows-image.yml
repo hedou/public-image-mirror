@@ -6,23 +6,26 @@ body:
 - type: markdown
   attributes:
     value: |
-      对于个人镜像建议存国内的 Registry, 不要出口转内销.
-      这个模板仅为不熟悉 PR 流程的用户, 对于熟悉的可以, 带上下面信息直接提 PR (优先审查)
+      这个模板仅为不熟悉 PR 流程的用户, 对于熟悉的可以带上下面信息直接提提 PR 修改 [allows.txt](https://github.com/DaoCloud/public-image-mirror/blob/main/allows.txt) (优先审查)
+      - 对于镜像的要求 [#2328](https://github.com/DaoCloud/public-image-mirror/issues/2328)
+      - PR 合入后生效时间
+        - 主动同步 Issue 马上生效
+        - 服务器提供服务, 由于是人工的会延迟一段时间...
+      - 此为 **人工审核** (工作日, 不定时间) 请填写下述问题 [查看成功案例](https://github.com/DaoCloud/public-image-mirror/issues?q=is%3Aissue+label%3A%22allows+image%22+is%3Aclosed+linked%3Apr)
 
 - type: dropdown
   attributes:
-    label: 要同步的级别
+    label: 白名单级别
     options:
-      - 只需要这一个镜像 (如 docker.io/library/busybox) (要求满足下面的内容)
-      - 需要这个组织下所有镜像 (如 docker.io/library/**) (要求是开源项目的组织)
-      - 需要这个 Registry 下所有镜像 (如 docker.io/**) (要求是开源项目的 Registry)
+      - 只需要这一个镜像 (如 docker.io/library/busybox)
+      - 需要这个组织下所有镜像 (如 docker.io/library/**)
+      - 需要这个镜像仓库下所有镜像 (如 registry.k8s.io/**)
   validations:
     required: true
 
 - type: textarea
   attributes:
-    label: Source
-    description: 镜像源码地址 或 组织地址
+    label: 项目源码地址 或 组织地址
     placeholder: |
       https://github.com/...
   validations:
@@ -30,21 +33,21 @@ body:
 
 - type: textarea
   attributes:
-    label: Dockerfile
-    description: 镜像构建的 Dockerfile
-    placeholder: |
-      路径/Dockerfile
+    label: 官网 或 文档 或 项目源码 中哪提及对应的镜像的地址 (需要证明这个镜像和源码有实际关联)
   validations:
     required: true
 
 - type: textarea
   attributes:
-    label: Image
-    description: 镜像仓库地址
+    label: 镜像仓库地址
     placeholder: |
       https://hub.docker.com/r/...
   validations:
     required: true
+
+- type: textarea
+  attributes:
+    label: 补充说明
 
 - type: markdown
   attributes:
